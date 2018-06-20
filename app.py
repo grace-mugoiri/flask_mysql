@@ -18,16 +18,16 @@ mysql = MySQL(app)
 def index():
     """define tthe index function"""
     if request.method == "POST":
-        # fetch the data
-       userDetails = request.form
-       firstname = userDetails["firstname"]
-       secondname = userDetails["secondname"]
-       foodtoeat = userDetails["foodtoeat"]
-       cur = mysql.connection.cursor()
-       cur.execute("INSERT INTO users(firstname, secondname, foodtoeat) VALUES(%s, %s, %s)",(firstname, secondname, foodtoeat))
-       mysql.connection.commit()
-       cur.close()
-       return redirect("/users")
+        # fetch the data forms
+        userDetails = request.form
+        firstname = userDetails["firstname"]
+        secondname = userDetails["secondname"]
+        foodtoeat = userDetails["foodtoeat"]
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO users(firstname, secondname, foodtoeat) VALUES(%s, %s, %s)",(firstname, secondname, foodtoeat))
+        mysql.connection.commit()
+        cur.close()
+        return redirect("/users")
     return render_template("index.html")
 
 @app.route("/users")
